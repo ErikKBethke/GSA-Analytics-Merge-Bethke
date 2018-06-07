@@ -9,11 +9,14 @@ $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 $programFile = 'data/programs.csv';
 $program_data = readCSV($programFile, false);
+// Grab first row of CSV, which holds the header values.
 $program_data_header = array_shift($program_data);
 
 $all_domains_30_days = readCSV('https://analytics.usa.gov/data/agriculture/all-domains-30-days.csv', true);
+// Grab first row of CSV, which holds the header values.
 $all_domains_30_days_header = array_shift($all_domains_30_days);
 
+// Convenient to store these indexes rather than searching for them each time.
 $domain_index = array_search('domain', $all_domains_30_days_header);
 $visits_index = array_search('visits', $all_domains_30_days_header);
 $pageviews_index = array_search('pageviews', $all_domains_30_days_header);
@@ -22,7 +25,6 @@ $pageviews_index = array_search('pageviews', $all_domains_30_days_header);
 $sql1 = "TRUNCATE TABLE `programdata`";
 $statement1 = $connection->prepare($sql1);
 $statement1->execute();
-
 
 foreach ($program_data as $program) {
     $row = array();
@@ -37,6 +39,7 @@ foreach ($program_data as $program) {
     $row['cost'] = $program[array_search('Cost/Budget', $program_data_header)];
     $row['reviewed_by'] = $program[array_search('Reviewed By', $program_data_header)];
 
+    // Filter $all_domains_30_days to grab just the row with the current domain.
     $this_domain_30_days = array_values(
         array_filter(
             $all_domains_30_days, function ($v, $k) use ($domain_index, $row) {
@@ -44,7 +47,6 @@ foreach ($program_data as $program) {
             },
         ARRAY_FILTER_USE_BOTH)
     );
-
 
     if (!empty($this_domain_30_days)) {
         $row['visits'] = $this_domain_30_days[0][$visits_index];
@@ -62,7 +64,16 @@ foreach ($program_data as $program) {
     $statement2->execute($row);
 }
 
-
+/**
+ * Parse a CSV file and store as an array.
+ * @param string $csvFile
+ *    Can be local file or remore URL.
+ * @param bool $gzipped'
+ *    Is the file gzip encoded?
+ *
+ * @return array
+ *    The parsed CSV data
+ */
 function readCSV($csvFile, $gzipped){
     $file_handle = $gzipped ? gzopen($csvFile, 'rb') : fopen($csvFile, 'rb');
     while (!feof($file_handle) ) {
