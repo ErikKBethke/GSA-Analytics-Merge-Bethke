@@ -1,8 +1,9 @@
-create database program_analytics;
+
+CREATE DATABASE IF NOT EXISTS program_analytics;
 
 use program_analytics;
 
-CREATE TABLE programdata (
+CREATE TABLE IF NOT EXISTS programdata (
 	id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	missionarea VARCHAR(260) NULL,
 	division VARCHAR(260) NULL,

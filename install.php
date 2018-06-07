@@ -3,7 +3,7 @@
 require "config.php";
 
 try {
-  $connection = new PDO("mysql:host=localhost", $username, $password);
+  $connection = new PDO("mysql:host=127.0.0.1", $username, $password);
   $connection->setAttribute(PDO::ATTR_EMULATE_PREPARES, 0);
   $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   $sql = file_get_contents("./data/init.sql");
