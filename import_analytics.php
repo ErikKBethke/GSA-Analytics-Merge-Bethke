@@ -28,16 +28,16 @@ $statement1->execute();
 
 foreach ($program_data as $program) {
     $row = array();
-    $row['missionarea'] = $program[array_search('Mission Area', $program_data_header)];
-    $row['division'] = $program[array_search('Office/Division/National Program', $program_data_header)];
-    $row['program'] = $program[array_search('Program', $program_data_header)];
-    $row['programcategory'] = $program[array_search('Program Category', $program_data_header)];
-    $row['url'] = $program[array_search('URL', $program_data_header)];
-    $row['domain'] = $program[array_search('Domain', $program_data_header)];
-    $row['description'] = $program[array_search('Description', $program_data_header)];
-    $row['programtype'] = $program[array_search('Program Types', $program_data_header)];
-    $row['cost'] = $program[array_search('Cost/Budget', $program_data_header)];
-    $row['reviewed_by'] = $program[array_search('Reviewed By', $program_data_header)];
+    $row['missionarea'] = isset($program[array_search('Mission Area', $program_data_header)]) ? $program[array_search('Mission Area', $program_data_header)] : NULL;
+    $row['division'] = isset($program[array_search('Office/Division/National Program', $program_data_header)]) ? $program[array_search('Office/Division/National Program', $program_data_header)] : NULL;
+    $row['program'] = isset($program[array_search('Program', $program_data_header)]) ? $program[array_search('Program', $program_data_header)] : NULL;
+    $row['programcategory'] = isset($program[array_search('Program Category', $program_data_header)]) ? $program[array_search('Program Category', $program_data_header)] : NULL;
+    $row['url'] = isset($program[array_search('URL', $program_data_header)]) ? $program[array_search('URL', $program_data_header)] : NULL;
+    $row['domain'] = isset($program[array_search('Domain', $program_data_header)]) ? $program[array_search('Domain', $program_data_header)] : NULL;
+    $row['description'] = isset($program[array_search('Description', $program_data_header)]) ? $program[array_search('Description', $program_data_header)] : NULL;
+    $row['programtype'] = isset($program[array_search('Program Types', $program_data_header)]) ? $program[array_search('Program Types', $program_data_header)] : NULL;
+    $row['cost'] = isset($program[array_search('Cost/Budget', $program_data_header)]) ? $program[array_search('Cost/Budget', $program_data_header)] : NULL;
+    $row['reviewed_by'] = isset($program[array_search('Reviewed By', $program_data_header)]) ? $program[array_search('Reviewed By', $program_data_header)] : NULL;
 
     // Filter $all_domains_30_days to grab just the row with the current domain.
     $this_domain_30_days = array_values(
@@ -49,8 +49,8 @@ foreach ($program_data as $program) {
     );
 
     if (!empty($this_domain_30_days)) {
-        $row['visits'] = $this_domain_30_days[0][$visits_index];
-        $row['pageviews'] = $this_domain_30_days[0][$pageviews_index];
+        $row['visits'] = isset($this_domain_30_days[0][$visits_index]) ? $this_domain_30_days[0][$visits_index] : NULL;
+        $row['pageviews'] = isset($this_domain_30_days[0][$pageviews_index]) ? $this_domain_30_days[0][$pageviews_index] : NULL;
     }
 
     $sql2 = sprintf(
