@@ -30,21 +30,9 @@ if ($statement->rowCount() > 0) {
         $lineData = array($row['missionarea'], $row['division'], $row['program'], $row['programcategory'], $row['url'], $row['domain'], $row['description'], $row['programtype'], $row['cost'], $row['reviewed_by'], $row['visits'], $row['pageviews'], $row['date']);
         fputcsv($file, $lineData, $delimiter);
     }
-  
-    // Move back to beginning of file
-    fseek($file, 0);
-
-    // Set the required headers to for the csv file.
-    header('Content-Type: text/csv');
-    header('Content-Disposition: attachment; filename="' . $programAnalyticsFile . '";');
-    header("Pragma: no-cache");
-
-    // Output all the remaining data onto a file pointer.
-    fpassthru($file);
-
 }
 
 fclose($file);
 
-echo "Program Analytics file is now available under ".$programAnalyticsFile;
+echo "Program Analytics file is now available under ".$programAnalyticsFile . " \n";
 
