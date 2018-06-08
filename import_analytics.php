@@ -28,6 +28,7 @@ $statement1->execute();
 
 foreach ($program_data as $program) {
     $row = array();
+    $row['agency'] = isset($program[array_search('Agency', $program_data_header)]) ? $program[array_search('Agency', $program_data_header)] : NULL;
     $row['missionarea'] = isset($program[array_search('Mission Area', $program_data_header)]) ? $program[array_search('Mission Area', $program_data_header)] : NULL;
     $row['division'] = isset($program[array_search('Office/Division/National Program', $program_data_header)]) ? $program[array_search('Office/Division/National Program', $program_data_header)] : NULL;
     $row['program'] = isset($program[array_search('Program', $program_data_header)]) ? $program[array_search('Program', $program_data_header)] : NULL;

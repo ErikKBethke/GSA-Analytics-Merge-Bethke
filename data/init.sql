@@ -5,6 +5,7 @@ use program_analytics;
 
 CREATE TABLE IF NOT EXISTS programdata (
 	id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	agency VARCHAR(260) NULL,
 	missionarea VARCHAR(260) NULL,
 	division VARCHAR(260) NULL,
   program VARCHAR(260) NULL,
