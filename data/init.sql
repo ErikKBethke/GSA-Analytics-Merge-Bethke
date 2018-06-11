@@ -18,5 +18,8 @@ CREATE TABLE IF NOT EXISTS programdata (
   reviewed_by VARCHAR(260) NULL,
   visits INT(11) NULL,
   pageviews INT(11) NULL,
-  date TIMESTAMP
+  priorlivevisitors INT(11) NULL,
+  livevisitors INT(11) NULL,
+  date TIMESTAMP,
+  UNIQUE KEY `program_index` (`program`)
 );
