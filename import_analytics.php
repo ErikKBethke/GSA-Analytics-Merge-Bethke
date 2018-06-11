@@ -75,7 +75,7 @@ foreach ($program_data as $program) {
   );
 
   if (!empty($this_page_realtime)) {
-    $liveStamp = 'test'
+    $liveStamp = 'test';
     $row[$liveStamp] = isset($this_page_realtime[0][$active_visitors_index]) ? $this_page_realtime[0][$active_visitors_index] : NULL;
   }
 
