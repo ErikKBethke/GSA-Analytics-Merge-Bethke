@@ -27,7 +27,7 @@ if ($statement->rowCount() > 0) {
 
   // Output each row of the data, format line as csv and write to file pointer.
   while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
-    $lineData = array($row['agency'], $row['missionarea'], $row['division'], $row['program'], $row['programcategory'], $row['url'], $row['domain'], $row['description'], $row['programtype'], $row['cost'], $row['reviewed_by'], $row['visits'], $row['pageviews'], $row['priorlivevisitors'], $row['liveStamp'], $row['date']);
+    $lineData = array($row['agency'], $row['missionarea'], $row['division'], $row['program'], $row['programcategory'], $row['url'], $row['domain'], $row['description'], $row['programtype'], $row['cost'], $row['reviewed_by'], $row['visits'], $row['pageviews'], $row['priorlivevisitors'], $row[$liveStamp], $row['date']);
     fputcsv($file, $lineData, $delimiter);
   }
 }
