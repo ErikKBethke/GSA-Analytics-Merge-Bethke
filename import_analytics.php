@@ -28,13 +28,8 @@ $active_visitors_index = array_search('active_visitors', $all_pages_realtime_hea
 
 // Truncate programdata table to remove existing data.
 try {
-  $sql3 = "UPDATE `programdata` set priorlivevisitors=livevisitors";
+  $sql1 = "UPDATE `programdata` set priorlivevisitors=livevisitors";
   $statement1 = $connection->prepare($sql1);
-  $statement2 = $connection->prepare($sql2);
-  $statement3 = $connection->prepare($sql3);
-  $statement1->execute();
-  $statement2->execute();
-  $statement3->execute();
 }
 catch(Exception $e) {
   echo $e->getMessage();die;
