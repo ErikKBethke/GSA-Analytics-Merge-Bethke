@@ -22,7 +22,7 @@ if ($statement->rowCount() > 0) {
   $delimiter = ",";
 
   // Set column headers for the csv file.
-  $fields = array('Agency', 'Mission area', 'Division', 'Program', 'Program Category', 'URL', 'Domain', 'Description', 'Program Type', 'Cost', 'Reviewed By', "Visits", 'Page Views', 'Prior Live Visitors', $row['date'], 'Updated Date');
+  $fields = array('Agency', 'Mission area', 'Division', 'Program', 'Program Category', 'URL', 'Domain', 'Description', 'Program Type', 'Cost', 'Reviewed By', "Visits", 'Page Views', 'Prior Live Visitors', date("Y-m-d H:i:s"), 'Updated Date');
   fputcsv($file, $fields, $delimiter);
 
   // Output each row of the data, format line as csv and write to file pointer.
