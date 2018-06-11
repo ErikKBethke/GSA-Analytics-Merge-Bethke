@@ -28,8 +28,6 @@ $active_visitors_index = array_search('active_visitors', $all_pages_realtime_hea
 
 // Truncate programdata table to remove existing data.
 try {
-  $sql1 = "UPDATE `programdata` set visits=NULL";
-  $sql2 = "UPDATE `programdata` set pageviews=NULL";
   $sql3 = "UPDATE `programdata` set priorlivevisitors=livevisitors";
   $statement1 = $connection->prepare($sql1);
   $statement2 = $connection->prepare($sql2);
@@ -57,7 +55,6 @@ foreach ($program_data as $program) {
   $row['reviewed_by'] = isset($program[array_search('Reviewed By', $program_data_header)]) ? $program[array_search('Reviewed By', $program_data_header)] : NULL;
   $row['visits'] = 0;
   $row['pageviews'] = 0;
-  $row['livevisitors'] = 0;
 
   // Filter $all_domains_30_days to grab just the row with the current domain.
   $this_domain_30_days = array_values(

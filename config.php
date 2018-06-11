@@ -3,7 +3,7 @@
 //$host = "localhost";
 $host = "127.0.0.1";
 $username = "root";
-$password = "root";
+$password = "";
 $dbname = "program_analytics";
 $dsn = "mysql:host=$host;dbname=$dbname";
 $options = array(
